@@ -30,18 +30,41 @@
     const WIDTH = window.innerWidth;
     const HEIGHT = window.innerHeight;
 
-
+    /**
+     * A renderer is a tool which displays scenes right in your browser. 
+     * There are a few different renderers: WebGL is the default, and others you can use are Canvas, SVG, CSS, and DOM. 
+     * 
+     * The code below creates a new WebGL renderer, sets its size to fit the whole available space on the screen, and appends the DOM structure to the page.
+     */
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(WIDTH, HEIGHT);
     renderer.setClearColor(0xdddddd, 1);
     document.body.appendChild(renderer.domElement);
 
+    /**
+     * A scene is a container for all the objects you want to display.
+     * It's the root of the scene graph.
+     *
+     * The code below creates a new scene.
+     */
     const scene = new THREE.Scene();
 
+    /**
+     * A camera is what you use to look at the scene.
+     * This is where you set how far the camera is from the scene.
+     *
+     * The code below creates a new camera.
+     */
     const camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, 0.1, 10000);
     camera.position.z = 50;
     scene.add(camera);
 
+    /**
+     * A geometry is a shape which you can apply a material to it in order to create a mesh.
+     * This is where you set how the object looks.
+     *
+     * The code below creates a new geometry.
+     */
     const boxGeometry = new THREE.BoxGeometry(10, 10, 10);
     const basicMaterial = new THREE.MeshBasicMaterial({ color: 0x0095dd });
     const cube = new THREE.Mesh(boxGeometry, basicMaterial);
@@ -49,22 +72,45 @@
     cube.rotation.set(0.4, 0.2, 0);
     scene.add(cube);
 
+    /**
+     * A mesh is a combination of a geometry and a material.
+     * This is where you set how the object looks.
+     *
+     * The code below creates a new mesh.
+     */
     const torusGeometry = new THREE.TorusGeometry(7, 1, 16, 32);
     const phongMaterial = new THREE.MeshPhongMaterial({ color: 0xff9500 });
     const torus = new THREE.Mesh(torusGeometry, phongMaterial);
     torus.rotation.set(0.5, 0.5, 0);
     scene.add(torus);
 
+    /**
+     * A mesh is a combination of a geometry and a material.
+     * This is where you set how the object looks.
+     *
+     * The code below creates a new mesh.
+     */
     const strangeGeometry = new THREE.DodecahedronGeometry(7);
     const lambertMaterial = new THREE.MeshLambertMaterial({ color: 0xeaeff2 });
     const dodecahedron = new THREE.Mesh(strangeGeometry, lambertMaterial);
     dodecahedron.position.x = 25;
     scene.add(dodecahedron);
 
+    /**
+     * A light is what you use to illuminate the scene.
+     * This is where you set how bright the light is.
+     *
+     * The code below creates a new light.
+     */
     const light = new THREE.PointLight(0xffffff);
     light.position.set(-10, 15, 50);
     scene.add(light);
 
+    /**
+     * The code below creates a function called render.
+     * This function will be called every frame.
+     * It will update the scene and render it.
+     */
     let t = 0;
     function render() {
       t += 0.01;
