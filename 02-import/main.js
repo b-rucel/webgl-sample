@@ -17,6 +17,18 @@ const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 
+
+const blue_material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+const points = [];
+points.push( new THREE.Vector3( -10, 0, 0 ) );
+points.push( new THREE.Vector3( 0, 2, 0 ) );
+points.push( new THREE.Vector3( 10, 2, -2 ) );
+
+const _geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+const line = new THREE.Line( _geometry, blue_material );
+scene.add( line );
+
 camera.position.z = 5;
 
 function animate() {
