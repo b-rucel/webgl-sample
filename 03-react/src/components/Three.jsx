@@ -18,6 +18,22 @@ function MyThree() {
     var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
     
+    // Add gradient background
+    // const color1 = new THREE.Color(0x1a1a2e);  // Dark blue
+    // const color2 = new THREE.Color(0x0f0f1a);  // Darker blue
+
+    // Purple to Dark Blue:
+    const color1 = new THREE.Color(0x4a148c);
+    const color2 = new THREE.Color(0x1a237e);
+
+    // Dark Green to Black:
+    // const color1 = new THREE.Color(0x1b5e20);
+    // const color2 = new THREE.Color(0x000000);
+
+
+    scene.background = new THREE.Color(color1);
+    scene.fog = new THREE.Fog(color2, 1, 1000);
+    
     if (!refContainer.current.hasChildNodes()) {
       refContainer.current.appendChild(renderer.domElement);
     }
